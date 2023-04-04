@@ -18,6 +18,7 @@ class Employee extends Model
         'country_id',
         'department_id',
         'zip_code',
+        'birth_date',
         'date_hired'
     ];
 
