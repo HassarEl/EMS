@@ -40,10 +40,12 @@ class EmployeeResource extends Resource
                         Select::make('country_id')
                             ->label('Country')
                             ->options(Country::all()->pluck('name', 'id')->toArray())
+                            ->required()
                             ->reactive()
                             ->afterStateUpdated(fn (Callable $set) => $set('state_id', null) ),
                         Select::make('state_id')
                             ->label('State')
+                            ->required()
                             ->options(function(callable $get){
                                 $country = Country::find($get ('country_id'));
                                 if (!$country) {
@@ -63,15 +65,16 @@ class EmployeeResource extends Resource
                                 }
                                 return $state->cities->pluck('name', 'id');
                             })
+                            ->required()
                             ->reactive()
                             ->afterStateUpdated(fn (Callable $set) => $set('city_id', null)),
 
                         Select::make('department_id',)
                             ->relationship('department', 'name')->required(),
-                        TextInput::make('first_name')->required(),
-                        TextInput::make('last_name')->required(),
-                        TextInput::make('address')->required(),
-                        TextInput::make('zip_code')->required(),
+                        TextInput::make('first_name')->required()->maxLength(255),
+                        TextInput::make('last_name')->required()->maxLength(255),
+                        TextInput::make('address')->required()->maxLength(255),
+                        TextInput::make('zip_code')->required()->maxLength(5),
                         DatePicker::make('birth_date')->required(),
                         DatePicker::make('date_hired')->required(),
                 ])
