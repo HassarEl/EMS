@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CountryResource\Pages;
 use App\Filament\Resources\CountryResource\RelationManagers;
 use App\Filament\Resources\CountryResource\RelationManagers\EmployeesRelationManager;
+use App\Filament\Resources\CountryResource\RelationManagers\StatesRelationManager;
 use App\Models\Country;
 use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
@@ -65,6 +66,7 @@ class CountryResource extends Resource
     {
         return [
             EmployeesRelationManager::class,
+            StatesRelationManager::class,
         ];
     }
     
