@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\EmployeeResource\Widgets;
 
+use App\Models\Country;
+use App\Models\Employee;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Card;
 
@@ -9,10 +11,13 @@ class EmployeeStatsOverview extends BaseWidget
 {
     protected function getCards(): array
     {
+        $us = Country::where('country_code', 'US')->withCount('employees')->first();
+        $uk = Country::where('country_code', 'Uk')->withCount('employees')->first();
+
         return [
-            Card::make('Unique views', '192.1k'),
-            Card::make('Bounce rate', '21%'),
-            Card::make('Average time on page', '3:12'),
+            Card::make('All Employees', Employee::all()->count()),
+            Card::make($uk->name. ' Employees', $uk->employees_count),
+            Card::make($us->name. ' Employees', $us->employees_count),
         ];
     }
 }
