@@ -3,14 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EmployeeResource\Pages;
-use App\Filament\Resources\EmployeeResource\RelationManagers;
 use App\Filament\Resources\EmployeeResource\Widgets\EmployeeStatsOverview;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Employee;
 use App\Models\State;
-use DatePeriod;
-use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -21,10 +18,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Nette\Utils\Callback;
-use phpDocumentor\Reflection\Types\Callable_;
+
 
 class EmployeeResource extends Resource
 {
